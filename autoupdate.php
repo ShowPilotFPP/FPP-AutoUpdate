@@ -364,8 +364,10 @@ $apiDirect = '/plugins/FPP-AutoUpdate/api.php';
 (function () {
     'use strict';
 
-    // API endpoint — direct path avoids FPP's plugin.php POST-body proxying.
-    var API = '/plugins/FPP-AutoUpdate/api.php';
+    // API endpoint — must route through FPP's plugin.php since direct
+    // /plugins/<name>/api.php paths aren't web-served. nopage=1 tells FPP
+    // to skip the HTML chrome (header/menu/footer) so we get raw JSON back.
+    var API = '/plugin.php?nopage=1&plugin=FPP-AutoUpdate&page=api.php';
 
     var state = {
         config: null,
@@ -406,7 +408,9 @@ $apiDirect = '/plugins/FPP-AutoUpdate/api.php';
 
     function api(action, opts) {
         opts = opts || {};
-        var url = API + '?action=' + encodeURIComponent(action);
+        // API already contains query string params (plugin=, page=, nopage=),
+        // so append action with & not ?
+        var url = API + '&action=' + encodeURIComponent(action);
         var init = { method: opts.method || 'GET' };
         if (opts.body) {
             init.method = 'POST';
