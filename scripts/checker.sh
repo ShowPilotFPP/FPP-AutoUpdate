@@ -1,7 +1,7 @@
 #!/bin/bash
 # checker.sh — Main update loop. Runs from cron at the user's chosen interval.
 #
-# Reads config from /home/fpp/media/plugindata/fpp-AutoUpdate.json,
+# Reads config from /home/fpp/media/plugindata/FPP-AutoUpdate.json,
 # evaluates the safety gates, and either checks-only or applies updates
 # to each enabled plugin. Every action is appended to the history log.
 
@@ -9,16 +9,16 @@ set -uo pipefail
 
 PLUGIN_DIR="/home/fpp/media/plugins"
 PLUGINDATA_DIR="/home/fpp/media/plugindata"
-SELF_DIR="$PLUGIN_DIR/fpp-AutoUpdate"
-CONFIG_FILE="$PLUGINDATA_DIR/fpp-AutoUpdate.json"
-LOG_FILE="$PLUGINDATA_DIR/fpp-AutoUpdate.log"
-LOCK_FILE="/tmp/fpp-AutoUpdate.lock"
+SELF_DIR="$PLUGIN_DIR/FPP-AutoUpdate"
+CONFIG_FILE="$PLUGINDATA_DIR/FPP-AutoUpdate.json"
+LOG_FILE="$PLUGINDATA_DIR/FPP-AutoUpdate.log"
+LOCK_FILE="/tmp/FPP-AutoUpdate.lock"
 
 # Single-instance lock — prevents two cron invocations stomping on each
 # other if a previous run is still doing a slow git pull.
 exec 9>"$LOCK_FILE"
 if ! flock -n 9; then
-    echo "Another fpp-AutoUpdate run is in progress; exiting." >&2
+    echo "Another FPP-AutoUpdate run is in progress; exiting." >&2
     exit 0
 fi
 
@@ -100,7 +100,7 @@ for plugin_path in "$PLUGIN_DIR"/*/; do
     plugin_name="$(basename "$plugin_path")"
 
     # Never touch ourselves.
-    if [[ "$plugin_name" == "fpp-AutoUpdate" ]]; then
+    if [[ "$plugin_name" == "FPP-AutoUpdate" ]]; then
         continue
     fi
 

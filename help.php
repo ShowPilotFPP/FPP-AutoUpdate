@@ -46,12 +46,12 @@
     </div>
 
     <h3>History log</h3>
-    <p>Every run appends to <code>/home/fpp/media/plugindata/fpp-AutoUpdate.log</code> — JSONL format, one event per line. The settings page shows the most recent 20 events. Lines older than the configured retention period (default 30 days) are pruned on the next write.</p>
+    <p>Every run appends to <code>/home/fpp/media/plugindata/FPP-AutoUpdate.log</code> — JSONL format, one event per line. The settings page shows the most recent 20 events. Lines older than the configured retention period (default 30 days) are pruned on the next write.</p>
 
     <h3>Troubleshooting</h3>
     <ul>
         <li>If a plugin shows "fetch fail" repeatedly, check that the FPP host can reach github.com (DNS, firewall, GitHub outage).</li>
         <li>If "skipped: dirty_worktree" keeps appearing for a plugin you didn't intend to edit, run <code>cd /home/fpp/media/plugins/&lt;plugin&gt; && git status</code> to see what's marked as modified. Common culprit: file mode changes from copying via SFTP.</li>
-        <li>The cron entry is installed at <code>/etc/cron.d/fpp-AutoUpdate</code>. If the schedule isn't running, verify the file exists and that cron itself is enabled.</li>
+        <li>The cron entry is installed at <code>/etc/cron.d/FPP-AutoUpdate</code>. If the schedule isn't running, verify the file exists and that cron itself is enabled.</li>
     </ul>
 </div>

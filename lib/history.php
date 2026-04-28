@@ -7,7 +7,7 @@
 // (configurable, default 30) — beyond that, lines are pruned on next write.
 
 if (!defined('FPP_AUTOUPDATE_LOG_PATH')) {
-    define('FPP_AUTOUPDATE_LOG_PATH', '/home/fpp/media/plugindata/fpp-AutoUpdate.log');
+    define('FPP_AUTOUPDATE_LOG_PATH', '/home/fpp/media/plugindata/FPP-AutoUpdate.log');
 }
 
 function autoupdate_log_event(array $event) {

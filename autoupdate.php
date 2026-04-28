@@ -6,11 +6,11 @@
 
 require_once __DIR__ . '/lib/config.php';
 
-$pluginUrl = 'plugin.php?plugin=fpp-AutoUpdate&page=autoupdate.php';
-$apiUrl = '/plugin.php?plugin=fpp-AutoUpdate&_route=api';
+$pluginUrl = 'plugin.php?plugin=FPP-AutoUpdate&page=autoupdate.php';
+$apiUrl = '/plugin.php?plugin=FPP-AutoUpdate&_route=api';
 // Direct API access path — FPP's plugin.php router doesn't proxy POST
 // bodies cleanly to api.php, so we hit it via the plugin asset path.
-$apiDirect = '/plugins/fpp-AutoUpdate/api.php';
+$apiDirect = '/plugins/FPP-AutoUpdate/api.php';
 ?>
 <style>
 :root {
@@ -365,7 +365,7 @@ $apiDirect = '/plugins/fpp-AutoUpdate/api.php';
     'use strict';
 
     // API endpoint — direct path avoids FPP's plugin.php POST-body proxying.
-    var API = '/plugins/fpp-AutoUpdate/api.php';
+    var API = '/plugins/FPP-AutoUpdate/api.php';
 
     var state = {
         config: null,

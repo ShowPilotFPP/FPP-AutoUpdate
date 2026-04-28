@@ -7,7 +7,7 @@ An FPP plugin that automatically checks for and applies updates to your other in
 - Periodically checks each enabled plugin's git remote for updates
 - Refuses to update while FPP is playing, or if a scheduled show starts within a configurable buffer window
 - Skips plugins with uncommitted local edits (never clobbers your hand modifications)
-- Logs every run to `/home/fpp/media/plugindata/fpp-AutoUpdate.log` in JSONL format
+- Logs every run to `/home/fpp/media/plugindata/FPP-AutoUpdate.log` in JSONL format
 - Supports a per-plugin allowlist, dry-run mode, and check-only mode
 - Optionally restarts fppd after a successful batch update
 
@@ -21,21 +21,21 @@ An FPP plugin that automatically checks for and applies updates to your other in
 
 Install via FPP's Plugin Manager. The post-install script sets up:
 
-- `/etc/cron.d/fpp-AutoUpdate` — runs the checker every 15 minutes
-- `/etc/sudoers.d/fpp-AutoUpdate` — passwordless `systemctl restart fppd` for the fpp user (only used if you enable that option)
+- `/etc/cron.d/FPP-AutoUpdate` — runs the checker every 15 minutes
+- `/etc/sudoers.d/FPP-AutoUpdate` — passwordless `systemctl restart fppd` for the fpp user (only used if you enable that option)
 
 After install, navigate to **Content Setup → Plugin Auto-Update** to configure.
 
 ## Configuration
 
-All settings live in `/home/fpp/media/plugindata/fpp-AutoUpdate.json`. The settings page writes this file; you can also edit it directly. See `help.php` (or the in-app Help page) for full documentation of each option.
+All settings live in `/home/fpp/media/plugindata/FPP-AutoUpdate.json`. The settings page writes this file; you can also edit it directly. See `help.php` (or the in-app Help page) for full documentation of each option.
 
 ## Logs
 
 Tail recent activity:
 
 ```bash
-tail -f /home/fpp/media/plugindata/fpp-AutoUpdate.log | jq .
+tail -f /home/fpp/media/plugindata/FPP-AutoUpdate.log | jq .
 ```
 
 ## Development

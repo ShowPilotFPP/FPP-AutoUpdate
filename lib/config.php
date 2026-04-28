@@ -1,13 +1,13 @@
 <?php
 // Settings storage for FPP-AutoUpdate.
 //
-// Settings live at /home/fpp/media/plugindata/fpp-AutoUpdate.json so they
+// Settings live at /home/fpp/media/plugindata/FPP-AutoUpdate.json so they
 // survive plugin reinstalls (FPP wipes the plugin directory on update but
 // preserves plugindata/).
 
 if (!defined('FPP_AUTOUPDATE_CONFIG_PATH')) {
     // Allow override for tests; default to FPP's standard plugindata location.
-    define('FPP_AUTOUPDATE_CONFIG_PATH', '/home/fpp/media/plugindata/fpp-AutoUpdate.json');
+    define('FPP_AUTOUPDATE_CONFIG_PATH', '/home/fpp/media/plugindata/FPP-AutoUpdate.json');
 }
 
 function autoupdate_default_config() {

@@ -3,15 +3,15 @@
 #
 # Sets up:
 #   - Executable bits on shell scripts
-#   - cron entry at /etc/cron.d/fpp-AutoUpdate
+#   - cron entry at /etc/cron.d/FPP-AutoUpdate
 #   - sudoers fragment to allow the fpp user to systemctl restart fppd
 #     without a password (only used if "Restart fppd after batch" is on)
 
 set -e
 
-PLUGIN_DIR="/home/fpp/media/plugins/fpp-AutoUpdate"
-CRON_FILE="/etc/cron.d/fpp-AutoUpdate"
-SUDOERS_FILE="/etc/sudoers.d/fpp-AutoUpdate"
+PLUGIN_DIR="/home/fpp/media/plugins/FPP-AutoUpdate"
+CRON_FILE="/etc/cron.d/FPP-AutoUpdate"
+SUDOERS_FILE="/etc/sudoers.d/FPP-AutoUpdate"
 
 if [[ ! -d "$PLUGIN_DIR" ]]; then
     echo "Plugin directory not found at $PLUGIN_DIR" >&2
@@ -29,14 +29,14 @@ chmod +x "$PLUGIN_DIR/scripts/fpp-status.sh" 2>/dev/null || true
 #
 # We use root for cron rather than the fpp user because some operations
 # (apt installs run by plugin install scripts, fppd restart) need root.
-if [[ ! -f "$CRON_FILE" ]] || ! grep -q "fpp-AutoUpdate/scripts/checker.sh" "$CRON_FILE"; then
+if [[ ! -f "$CRON_FILE" ]] || ! grep -q "FPP-AutoUpdate/scripts/checker.sh" "$CRON_FILE"; then
     cat > "$CRON_FILE" <<'EOF'
 # FPP-AutoUpdate — checks for plugin updates on a schedule.
 # Runs every 15 minutes; the script itself checks user config to decide
 # whether to actually do anything on each invocation.
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-*/15 * * * * root /home/fpp/media/plugins/fpp-AutoUpdate/scripts/checker.sh >/dev/null 2>&1
+*/15 * * * * root /home/fpp/media/plugins/FPP-AutoUpdate/scripts/checker.sh >/dev/null 2>&1
 EOF
     chmod 644 "$CRON_FILE"
     echo "Installed cron entry at $CRON_FILE"

@@ -1,11 +1,11 @@
 {
-	"repoName": "fpp-AutoUpdate",
+	"repoName": "FPP-AutoUpdate",
 	"name": "Plugin Auto-Update",
 	"author": "Will / Lights On Drake",
 	"description": "Automatically checks for and applies updates to other installed FPP plugins. Supports a per-plugin allowlist, scheduled update windows, dry-run mode, and an update history log. Refuses to update while FPP is playing or when a scheduled show is about to start.",
-	"homeURL": "https://github.com/lightsondrake/fpp-AutoUpdate",
-	"srcURL": "https://github.com/lightsondrake/fpp-AutoUpdate.git",
-	"bugURL": "https://github.com/lightsondrake/fpp-AutoUpdate/issues",
+	"homeURL": "https://github.com/ShowPilotFPP/FPP-AutoUpdate",
+	"srcURL": "https://github.com/ShowPilotFPP/FPP-AutoUpdate.git",
+	"bugURL": "https://github.com/ShowPilotFPP/FPP-AutoUpdate/issues",
 	"allowUpdates": 1,
 	"versions": [
 		{

@@ -1,6 +1,6 @@
 <?php
 // Enumerate other plugins installed on this FPP instance and check their
-// git state. We deliberately exclude ourselves from the scan — fpp-AutoUpdate
+// git state. We deliberately exclude ourselves from the scan — FPP-AutoUpdate
 // never auto-updates itself; the user must update it manually through FPP's
 // plugin manager. This avoids the "updater breaks itself" failure mode where
 // you lose your update mechanism with no easy recovery path.
@@ -9,7 +9,7 @@ if (!defined('FPP_PLUGIN_DIR')) {
     define('FPP_PLUGIN_DIR', '/home/fpp/media/plugins');
 }
 
-define('AUTOUPDATE_SELF_REPO', 'fpp-AutoUpdate');
+define('AUTOUPDATE_SELF_REPO', 'FPP-AutoUpdate');
 
 function autoupdate_scan_plugins() {
     $plugins = [];
