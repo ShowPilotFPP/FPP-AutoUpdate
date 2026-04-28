@@ -365,9 +365,11 @@ $apiDirect = '/plugins/FPP-AutoUpdate/api.php';
     'use strict';
 
     // API endpoint — must route through FPP's plugin.php since direct
-    // /plugins/<name>/api.php paths aren't web-served. nopage=1 tells FPP
+    // /plugins/<name>/* paths aren't web-served. nopage=1 tells FPP
     // to skip the HTML chrome (header/menu/footer) so we get raw JSON back.
-    var API = '/plugin.php?nopage=1&plugin=FPP-AutoUpdate&page=api.php';
+    // File is named endpoint.php (not api.php) to avoid any chance of
+    // collision with FPP conventions or generic plugin-discovery scans.
+    var API = '/plugin.php?nopage=1&plugin=FPP-AutoUpdate&page=endpoint.php';
 
     var state = {
         config: null,

@@ -83,8 +83,18 @@ function autoupdate_inspect_plugin($name, $path) {
 
     // Dirty check — any uncommitted local changes mean we leave this plugin
     // alone. We never stash, never reset --hard. The user's edits are theirs.
-    $status = autoupdate_git_exec($path, ['status', '--porcelain']);
-    $info['isDirty'] = $status !== null && trim($status) !== '';
+    //
+    // Mode-bit noise is a real problem: SFTP uploads, apt installs, and
+    // FPP's own scripts often flip executable bits on plugin files without
+    // touching content. Treating those as "dirty" leaves users unable to
+    // enable plugins they never modified. We run `git diff --quiet` with
+    // -c core.fileMode=false to ignore mode-only differences, and check
+    // for actual modified content. We DO still consider untracked files
+    // as a signal that something is going on, but only via a separate path.
+    $diffRc = -1;
+    @exec('cd ' . escapeshellarg($path) . ' && git -c core.fileMode=false diff --quiet 2>/dev/null', $_, $diffRc);
+    @exec('cd ' . escapeshellarg($path) . ' && git -c core.fileMode=false diff --cached --quiet 2>/dev/null', $_, $diffRcCached);
+    $info['isDirty'] = ($diffRc !== 0) || ($diffRcCached !== 0);
 
     return $info;
 }

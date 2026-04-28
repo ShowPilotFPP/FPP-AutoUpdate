@@ -1,6 +1,23 @@
 <?php
 // API endpoints for the settings page. All requests POST a JSON body
 // or a form-encoded "action" parameter. Responses are JSON.
+//
+// SAFETY GUARD: if invoked without an action parameter, exit silently
+// before any output. Previously, an early v0.1.x release of this plugin
+// caused FPP-wide /api/* endpoints to return 400 because something on the
+// FPP side (still not fully diagnosed) was invoking this file with no
+// action and capturing its error JSON into fppd's own stdout. Defending
+// at the entry point is correct regardless of cause: there is no legitimate
+// reason for any caller to invoke this script without specifying an action.
+if (empty($_REQUEST['action'] ?? '') && PHP_SAPI !== 'cli') {
+    // Web request without action — return empty 400, no body, no JSON.
+    http_response_code(400);
+    exit;
+}
+if (PHP_SAPI === 'cli') {
+    // Never produce output when run from the command line.
+    exit(0);
+}
 
 require_once __DIR__ . '/lib/config.php';
 require_once __DIR__ . '/lib/plugin-scanner.php';

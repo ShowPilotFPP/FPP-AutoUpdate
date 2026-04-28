@@ -118,7 +118,10 @@ for plugin_path in "$PLUGIN_DIR"/*/; do
     checked_count=$((checked_count + 1))
 
     # Dirty-worktree check — if user has hand-edited files, leave it alone.
-    if [[ -n "$(cd "$plugin_path" && git status --porcelain 2>/dev/null)" ]]; then
+    # We use -c core.fileMode=false to ignore executable-bit noise from
+    # SFTP/apt/etc., matching what the PHP scanner does for the UI.
+    if ! (cd "$plugin_path" && git -c core.fileMode=false diff --quiet 2>/dev/null) || \
+       ! (cd "$plugin_path" && git -c core.fileMode=false diff --cached --quiet 2>/dev/null); then
         log_event "skipped" "$plugin_name" "\"reason\":\"dirty_worktree\""
         continue
     fi
