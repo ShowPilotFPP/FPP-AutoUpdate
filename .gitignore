@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Build artifacts
+*.tar.gz
+dist/
+
+# ShipPilot release manifest (never committed; defense in depth)
+.release.json

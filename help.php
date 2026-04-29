@@ -8,10 +8,24 @@
 .au-help p, .au-help li { font-size: 14px; color: #1a1a1a; }
 .au-help code { background: #f0f2f5; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
 .au-help .au-help-warn { background: #fffbeb; border: 1px solid rgba(217, 119, 6, 0.2); padding: 12px 16px; border-radius: 8px; margin: 16px 0; }
+.au-help-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 4px; }
+.au-help-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px;
+    background: #ffffff; color: #1a1a1a;
+    border: 1px solid rgba(0,0,0,0.16); border-radius: 8px;
+    font-size: 13px; font-weight: 500;
+    text-decoration: none;
+    transition: background 0.12s ease;
+}
+.au-help-back:hover { background: #f6f7f9; color: #1a1a1a; text-decoration: none; }
 </style>
 
 <div class="au-help">
-    <h2>Plugin Auto-Update — Help</h2>
+    <div class="au-help-header">
+        <h2>Plugin Auto-Update — Help</h2>
+        <a class="au-help-back" href="/" title="Return to FPP main interface">← Back to FPP</a>
+    </div>
 
     <p>FPP-AutoUpdate keeps your other installed FPP plugins up to date by periodically pulling from their git repositories. It's designed to be safe to leave running during show season — it refuses to update while FPP is playing or about to play a scheduled show.</p>
 
@@ -55,3 +69,4 @@
         <li>The cron entry is installed at <code>/etc/cron.d/FPP-AutoUpdate</code>. If the schedule isn't running, verify the file exists and that cron itself is enabled.</li>
     </ul>
 </div>
+<script>document.title = 'Plugin Auto-Update — Help — FPP';</script>

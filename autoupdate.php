@@ -77,7 +77,9 @@ $apiDirect = '/plugins/FPP-AutoUpdate/api.php';
     cursor: pointer;
     transition: background 0.12s ease, border-color 0.12s ease;
     line-height: 1.2;
+    text-decoration: none;
 }
+a.au-btn:hover { color: var(--au-text); }
 .au-btn:hover { background: var(--au-bg-soft); }
 .au-btn:active { transform: scale(0.98); }
 .au-btn-primary {
@@ -259,10 +261,11 @@ $apiDirect = '/plugins/FPP-AutoUpdate/api.php';
 
     <div class="au-header">
         <div>
-            <h2>FPP-AutoUpdate</h2>
+            <h2>Plugin Auto-Update</h2>
             <p>Keep installed plugins up to date automatically</p>
         </div>
         <div class="au-header-actions">
+            <a class="au-btn" href="/" title="Return to FPP main interface">← Back to FPP</a>
             <button class="au-btn" id="au-check-now">Check now</button>
             <button class="au-btn au-btn-primary" id="au-save">Save</button>
         </div>
@@ -363,6 +366,12 @@ $apiDirect = '/plugins/FPP-AutoUpdate/api.php';
 <script>
 (function () {
     'use strict';
+
+    // Set the browser tab title. FPP supplies the outer page chrome and a
+    // generic <title>, so without this the tab reads "Falcon Player" no
+    // matter which plugin page you're on. Setting it here makes it easy
+    // to find the right tab when you have several FPP UI tabs open.
+    document.title = 'Plugin Auto-Update — FPP';
 
     // API endpoint — must route through FPP's plugin.php since direct
     // /plugins/<name>/* paths aren't web-served. nopage=1 tells FPP
